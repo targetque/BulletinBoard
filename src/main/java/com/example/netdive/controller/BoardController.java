@@ -1,7 +1,6 @@
 package com.example.netdive.controller;
 
 import com.example.netdive.dto.BoardDTO;
-import com.example.netdive.model.Board;
 import com.example.netdive.service.ContentService;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,7 +20,7 @@ public class BoardController {
     }
 
     @GetMapping("/content")
-    public Board getContent(@RequestParam Long contentId) {
+    public BoardDTO getContent(@RequestParam Long contentId) {
         return contentService.readContent(contentId);
     }
 

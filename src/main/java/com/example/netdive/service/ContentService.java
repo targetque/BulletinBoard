@@ -20,7 +20,11 @@ public class ContentService {
 
         boardRepository.save(board);
     }
-    public Board readContent(Long contentId) {
-        return boardRepository.findById(contentId).orElseThrow();
+    public BoardDTO readContent(Long contentId) {
+        Board board = boardRepository.findById(contentId).orElseThrow();
+
+        BoardDTO boardDTO = BoardDTO.builder().userId(board.getUserId()).title(board.getTitle()).content(board.getContent()).build();
+
+        return boardDTO;
     }
 }

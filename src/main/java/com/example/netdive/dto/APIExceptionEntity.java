@@ -1,6 +1,11 @@
 package com.example.netdive.dto;
 
-public class APIExceptionEntity {
+import lombok.Builder;
+import lombok.Getter;
 
+@Builder
+@Getter
+public class APIExceptionEntity {
+    private String code;
     private String message;
 }
