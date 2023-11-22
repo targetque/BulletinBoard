@@ -33,5 +33,8 @@ public class Board {
         title = dto.getTitle();
         content = dto.getContent();
     }
-
+    public void updateContent(String title, String content) {
+        this.title = title;
+        this.content = content;
+    }
 }

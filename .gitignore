@@ -40,3 +40,11 @@ bin/
 
 ### Mac OS ###
 .DS_Store
+
+### git, gradle etc ###
+git_toolbox_prj.xml
+gradle.xml
+misc.xml
+uiDesigner.xml
+vcs.xml
+workspace.xml

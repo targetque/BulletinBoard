@@ -23,5 +23,9 @@ public class BoardController {
     public BoardDTO getContent(@RequestParam Long contentId) {
         return contentService.readContent(contentId);
     }
+    @PutMapping("/{contentId}")
+    public void updateContent(@PathVariable Long contentId, @RequestBody BoardDTO boardDTO) {
+        contentService.updateContent(contentId, boardDTO);
+    }
 
 }

@@ -27,4 +27,12 @@ public class ContentService {
 
         return boardDTO;
     }
+
+    public void updateContent(Long contentId, BoardDTO boardDTO) {
+        Board board = boardRepository.findById(contentId).orElseThrow();
+        board.updateContent(boardDTO.getTitle(), boardDTO.getContent());
+        boardRepository.save(board);
+    }
+
+
 }
