@@ -9,6 +9,12 @@ build/
 .idea/jarRepositories.xml
 .idea/compiler.xml
 .idea/libraries/
+./idea/git_toolbox_prj.xml
+./idea/gradle.xml
+./idea/misc.xml
+./idea/uiDesigner.xml
+./idea/vcs.xml
+./idea/workspace.xml
 *.iws
 *.iml
 *.ipr
@@ -40,11 +46,3 @@ bin/
 
 ### Mac OS ###
 .DS_Store
-
-### git, gradle etc ###
-git_toolbox_prj.xml
-gradle.xml
-misc.xml
-uiDesigner.xml
-vcs.xml
-workspace.xml
