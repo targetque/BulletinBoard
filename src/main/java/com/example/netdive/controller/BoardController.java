@@ -15,7 +15,7 @@ public class BoardController {
     }
 
     @PostMapping()
-    public void registContent(@RequestBody BoardDTO boardDto) {
+    public void registContent(@RequestBody BoardDTO boardDto) throws Exception{
         contentService.saveContent(boardDto);
     }
 
@@ -23,9 +23,9 @@ public class BoardController {
     public BoardDTO getContent(@RequestParam Long contentId) {
         return contentService.readContent(contentId);
     }
-    @PutMapping("/{contentId}")
+   /* @PutMapping("/{contentId}")
     public void updateContent(@PathVariable Long contentId, @RequestBody BoardDTO boardDTO) {
         contentService.updateContent(contentId, boardDTO);
-    }
+    }*/
 
 }
