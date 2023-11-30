@@ -16,17 +16,17 @@ public class StockService {
     public synchronized void decrease(final Long id, final Long quantity) {
         Stock stock = stockRepository.findById(id).orElseThrow();
         stock.decrease(quantity);
-        stockRepository.save(stock);
+        stockRepository.saveAndFlush(stock);
     }
     public Stock getStock() {
         return stockRepository.findById(1L).orElseThrow();
     }
 
-    @Transactional
+    //@Transactional
     public void setQuantity(final Long id, final Long quantity) {
         Stock stock = new Stock(1L, 100L);
 
-        stockRepository.save(stock);
+        stockRepository.saveAndFlush(stock);
     }
 
 }
