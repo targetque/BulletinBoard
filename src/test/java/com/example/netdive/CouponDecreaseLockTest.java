@@ -70,4 +70,31 @@ public class CouponDecreaseLockTest {
 
     }
 
+    @Test
+    public void 쿠폰차감_분산락_미적용_동시성100명_테스트() throws InterruptedException {
+        int numberOfThreads = 100;
+        ExecutorService executorService = Executors.newFixedThreadPool(numberOfThreads);
+        CountDownLatch latch = new CountDownLatch(numberOfThreads);
+
+        for(int i = 0; i < numberOfThreads; i++) {
+            executorService.submit(() -> {
+               try {
+                   // 분산락 미적용 메서드 호출
+                   couponDecreaseService.couponDecrease(coupon.getId());
+               } finally {
+                   latch.countDown();
+               }
+            });
+        }
+
+        latch.await();
+
+        Coupon persistCoupon = couponRepository.findById(coupon.getId()).orElseThrow(IllegalArgumentException::new);
+
+        assertThat(persistCoupon.getAvailableStock()).isZero();
+        System.out.println("잔여 쿠폰 갯수 = " + persistCoupon.getAvailableStock());
+
+
+    }
+
 }
