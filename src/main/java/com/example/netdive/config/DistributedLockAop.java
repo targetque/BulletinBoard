@@ -12,12 +12,13 @@ import org.springframework.stereotype.Component;
 
 import java.lang.reflect.Method;
 
-@Aspect
-@Component
+//@Aspect
+//@Component
 @RequiredArgsConstructor
 @Slf4j
 public class DistributedLockAop {
     private static final String REDISSON_LOCK_PREFIX = "LOCK:";
+
     private final RedissonClient redissonClient;
     private final AopForTransaction aopForTransaction;
 
