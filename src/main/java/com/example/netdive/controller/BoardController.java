@@ -1,6 +1,7 @@
 package com.example.netdive.controller;
 
 import com.example.netdive.dto.BoardDTO;
+import com.example.netdive.dto.Ecremmoce;
 import com.example.netdive.dto.EcremmoceResponose;
 import com.example.netdive.service.ContentService;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -36,9 +37,17 @@ public class BoardController {
 
 
     @GetMapping("/api/TomsOrder/test")
-    public Map<String,Object> getOrderListEcremmoce(@RequestParam Integer page, @RequestParam String companyId, @RequestParam String status, @RequestParam String startDate, @RequestParam String endDate, @RequestParam String platform) throws IOException {
+    public Map<String,Object> getOrderListEcremmoce(@RequestParam Integer page, @RequestParam Integer pageSize, @RequestParam String companyId, @RequestParam String status, @RequestParam String startDate, @RequestParam String endDate, @RequestParam String platform) throws IOException {
         ObjectMapper objectMapper = new ObjectMapper();
-        return objectMapper.readValue(new File("/Users/diormiss/IdeaProjects/BulletinBoard/src/main/resources/ecremmoceSampleData.json"), Map.class);
+        return objectMapper.readValue(new File("/Users/diormiss/IdeaProjects/BulletinBoard/src/main/resources/ecremmoceSampleOneData.json"), Map.class);
     }
+
+
+    @PostMapping("/api/TomsOrder/ArrangeShipment")
+    public Map<String,Object> arrangeShipment(@RequestBody Ecremmoce ecremmoce) throws IOException {
+        ObjectMapper objectMapper = new ObjectMapper();
+        return objectMapper.readValue(new File("/Users/diormiss/IdeaProjects/BulletinBoard/src/main/resources/ecremmoceTrackingNo.json"), Map.class);
+    }
+
 
 }
