@@ -14,29 +14,32 @@ public class ContentService {
     private final BoardRepository boardRepository;
 
     private final TestService testService;
-
     public ContentService(BoardRepository boardRepository, TestService testService) {
         this.boardRepository = boardRepository;
         this.testService = testService;
     }
 
 
-    @Transactional(rollbackFor = Exception.class, propagation = Propagation.REQUIRES_NEW)
+    //@Transactional(rollbackFor = Exception.class)
     public void saveContent(BoardDTO boardDTO) throws Exception {
 
         Board board = new Board(boardDTO);
         boardRepository.save(board);
-        updateContent(1000L, boardDTO);
+        testService.updateContent(1000L, boardDTO);
         throw new RuntimeException();
 
     }
 
-    @Transactional(rollbackFor = Exception.class)
+    /*
+    * @Transactional(rollbackFor = Exception.class, propagation = Propagation.REQUIRES_NEW)
     public void updateContent(Long contentId, BoardDTO boardDTO) {
         Board board = boardRepository.findById(contentId).orElseThrow();
         board.updateContent(boardDTO.getTitle(), boardDTO.getContent());
         boardRepository.save(board);
     }
+    * */
+
+
 
     public BoardDTO readContent(Long contentId) {
         Board board = boardRepository.findById(contentId).orElseThrow();

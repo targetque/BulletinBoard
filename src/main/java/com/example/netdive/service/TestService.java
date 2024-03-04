@@ -11,13 +11,13 @@ import org.springframework.transaction.interceptor.TransactionAspectSupport;
 @Service
 public class TestService {
 
-   /* private final BoardRepository boardRepository;
+    private final BoardRepository boardRepository;
 
     public TestService(BoardRepository boardRepository) {
         this.boardRepository = boardRepository;
     }
 
-    @Transactional(propagation = Propagation.REQUIRES_NEW, rollbackFor = Exception.class)
+    @Transactional(propagation = Propagation.MANDATORY, rollbackFor = Exception.class)
     public void updateContent(Long contentId, BoardDTO boardDTO) {
         Board board = boardRepository.findById(contentId).orElseThrow();
         board.updateContent(boardDTO.getTitle(), boardDTO.getContent());
@@ -26,6 +26,6 @@ public class TestService {
         } catch (Exception e) {
             TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
         }
-    }*/
+    }
 
 }
