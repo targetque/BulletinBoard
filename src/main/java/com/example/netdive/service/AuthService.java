@@ -5,7 +5,15 @@ import com.example.netdive.dto.AccessTokenRequest;
 import com.example.netdive.dto.BoardDTO;
 import com.example.netdive.model.Board;
 import com.example.netdive.repository.BoardRepository;
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.JwtBuilder;
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.impl.DefaultClaims;
 import org.springframework.stereotype.Service;
+
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 @Service
 public class AuthService {
@@ -49,9 +57,22 @@ public class AuthService {
     }
 
 
-    public AccessToken publishToken(AccessTokenRequest accessTokenRequest) {
+    public AccessToken publishToken(String id, String password) {
 
+        Map<String, String> jwtHeader = new HashMap<>();
 
+        Map<String, Object> jwtPayLoad = new HashMap<>();
+
+        Claims payLoad = new DefaultClaims();
+
+        payLoad.setExpiration(Date.after());
+
+        payLoad.setSubject("");
+
+        jwtHeader.put("alg","HS256");
+        jwtHeader.put("typ","JWT");
+
+        JwtBuilder jwtBuilder = Jwts.builder().setHeader().setClaims().signWith()
         //2XnBgHqowPsIJOFDX7GaX0
     }
 }

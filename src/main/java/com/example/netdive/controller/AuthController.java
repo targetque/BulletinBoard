@@ -41,16 +41,16 @@ public class AuthController {
     @PostMapping(value = "/token", consumes="application/x-www-form-urlencoded", produces = "application/json")
     public String authorizeJWTToken(@RequestParam String id, @RequestParam String password) throws Exception{
 
-        AccessTokenRequest accessTokenRequest = AccessTokenRequest.builder()
+        /*AccessTokenRequest accessTokenRequest = AccessTokenRequest.builder()
                 .clientId(client_id)
                 .timestamp(timestamp)
                 .grantType(grantType)
                 .clientSecretSign(client_secret_sign)
                 .type(type)
                 .accountId(account_id)
-                .build();
+                .build();*/
 
-        return authService.publishToken(accessTokenRequest);
+        return authService.publishToken(id, password);
     }
 
     @GetMapping("/content")
