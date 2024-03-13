@@ -4,13 +4,14 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 
 @Getter
+@Builder
 @AllArgsConstructor
 public class AccessToken {
 
     @JsonProperty("access_token")
     private String accessToken;
     @JsonProperty("expires_in")
-    private String expiresIn;
+    private Integer expiresIn;
     @JsonProperty("token_type")
     private String tokenType;
 

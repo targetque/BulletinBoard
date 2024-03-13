@@ -7,12 +7,14 @@ import com.example.netdive.dto.Ecremmoce;
 import com.example.netdive.service.AuthService;
 import com.example.netdive.service.LoginService;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.Map;
 
+@Slf4j
 @RequestMapping("/api/v1/oauth2")
 @RestController
 public class AuthController {
@@ -23,7 +25,7 @@ public class AuthController {
         this.authService = authService;
     }
 
-    @PostMapping(value = "/token", consumes="application/x-www-form-urlencoded", produces = "application/json")
+    /*@PostMapping(value = "/token", consumes="application/x-www-form-urlencoded", produces = "application/json")
     public AccessToken registContent(@RequestParam String client_id, @RequestParam Integer timestamp, @RequestParam String grantType, @RequestParam String client_secret_sign, @RequestParam String type, @RequestParam String account_id) throws Exception{
 
         AccessTokenRequest accessTokenRequest = AccessTokenRequest.builder()
@@ -36,27 +38,29 @@ public class AuthController {
                 .build();
 
         return authService.publishToken(accessTokenRequest);
-    }
+    }*/
 
     @PostMapping(value = "/token", consumes="application/x-www-form-urlencoded", produces = "application/json")
-    public String authorizeJWTToken(@RequestParam String id, @RequestParam String password) throws Exception{
+    public AccessToken authorizeJWTToken(@RequestParam String id, @RequestParam String password) {
 
-        /*AccessTokenRequest accessTokenRequest = AccessTokenRequest.builder()
-                .clientId(client_id)
-                .timestamp(timestamp)
-                .grantType(grantType)
-                .clientSecretSign(client_secret_sign)
-                .type(type)
-                .accountId(account_id)
-                .build();*/
+        AccessToken token = authService.publishToken(id, password);
 
-        return authService.publishToken(id, password);
+        return token;
     }
 
-    @GetMapping("/content")
+    @GetMapping(value = "/valid/token")
+    public boolean authorizeJWTToken(@RequestParam String accessToken) {
+
+        boolean valid = authService.checkValidToken(accessToken);
+
+        return valid;
+    }
+
+    /*@GetMapping("/content")
     public BoardDTO getContent(@RequestParam Long contentId) {
+
         return contentService.readContent(contentId);
-    }
+    }*/
    /* @PutMapping("/{contentId}")
     public void updateContent(@PathVariable Long contentId, @RequestBody BoardDTO boardDTO) {
         contentService.updateContent(contentId, boardDTO);
