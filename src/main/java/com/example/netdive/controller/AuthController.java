@@ -1,11 +1,8 @@
 package com.example.netdive.controller;
 
 import com.example.netdive.dto.AccessToken;
-import com.example.netdive.dto.AccessTokenRequest;
-import com.example.netdive.dto.BoardDTO;
 import com.example.netdive.dto.Ecremmoce;
 import com.example.netdive.service.AuthService;
-import com.example.netdive.service.LoginService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;

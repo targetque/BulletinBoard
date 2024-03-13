@@ -78,12 +78,6 @@ public class AuthService {
         jwtPayLoad.put("exp", LocalDateTime.now().toEpochSecond(ZoneOffset.UTC));
         jwtPayLoad.put("subject", "token");
 
-        // 유효기간 24시간
-
-        //log.debug("time {}", payLoad.get("exp"));
-
-        //System.out.println(payLoad.get("exp"));
-
         jwtHeader.put("alg","HS256");
         jwtHeader.put("typ","JWT");
 
