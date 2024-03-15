@@ -22,13 +22,12 @@ public class SpringSecurityConfig {
     }
 
     // static resource 위주로 ignore되고 static resource가 아닌 경우 동작하지 않음
-   /* @Bean
+   @Bean
     public WebSecurityCustomizer webSecurityCustomizer() {
         return web -> {
             web.ignoring()
-                    .
-                    .requestMatchers("/api/v1/oauth2");
+                    .requestMatchers("/resoure");
         };
-    }*/
+    }
 
 }
