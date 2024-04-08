@@ -75,7 +75,8 @@ public class AuthService {
 
         Map<String, Object> jwtPayLoad = new HashMap<>();
 
-        jwtPayLoad.put("exp", LocalDateTime.now().toEpochSecond(ZoneOffset.UTC));
+        // 발급한 시점으로부터 24시간 유효
+        jwtPayLoad.put("exp", LocalDateTime.now().plusDays(1).toEpochSecond(ZoneOffset.UTC));
         jwtPayLoad.put("subject", "token");
 
         jwtHeader.put("alg","HS256");
@@ -86,7 +87,7 @@ public class AuthService {
         AccessToken accessToken = AccessToken
                 .builder()
                 .accessToken(jwtBuilder.compact())
-                .expiresIn(Integer.valueOf((String) jwtPayLoad.get("exp")))
+                .expiresIn((Long) jwtPayLoad.get("exp"))
                 .tokenType("SELF")
                 .build();
 
@@ -102,6 +103,8 @@ public class AuthService {
         Integer exp = (Integer)payLoad.get("exp");
 
         Long currentTime = LocalDateTime.now().toEpochSecond(ZoneOffset.UTC);
+
+        System.out.println(currentTime.compareTo(Long.valueOf(exp)));
 
         if(currentTime.compareTo(Long.valueOf(exp)) < 0) {
             return true;
