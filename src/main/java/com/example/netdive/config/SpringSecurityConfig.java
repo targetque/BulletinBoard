@@ -25,7 +25,7 @@ public class SpringSecurityConfig {
                 )
                 //.addFilterBefore(new CustomFilter(), BasicAuthenticationFilter.class)
                 // addFilter를 넣는 건 이것에 대한 filtering을 하겠다는 의미가 아니다. 이 부분은 내가 잘못 이해함.
-                // 테스트 중
+                // 커밋 계정으로 정상적으로 되는지 테스트 중
                 .build();
     }
 
